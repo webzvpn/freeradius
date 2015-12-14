@@ -1,3 +1,6 @@
+# Forked from /catatnight/docker-freeradius
+### All credit goes to [catatnight](https://github.com/catatnight/)
+
 docker-freeradius
 =============
 
