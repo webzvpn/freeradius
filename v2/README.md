@@ -1,3 +1,6 @@
+# Forked from /catatnight/docker-freeradius with custom database names added
+### All credit goes to [catatnight](https://github.com/catatnight/)
+
 ## Requirement
 + Docker 0.11
 
@@ -5,8 +8,8 @@
 1. Build image (as root)
 
 	```bash
-	$ docker pull catatnight/freeradius:latest
-	$ wget https://raw.githubusercontent.com/catatnight/docker-freeradius/master/v2/manage.py
+	$ docker pull webz/freeradius:latest
+	$ wget https://raw.githubusercontent.com/webzvpn/freeradius/master/v2/manage.py
 	$ chmod +x manage.py
 	```
 
@@ -19,12 +22,12 @@
 	a) all remote clients are allowed, and access restriction could be made by firewall rules
 
 	```bash
-	$ ./manage.py -s radpass --mysql_server 1.2.3.4 -u test -p test create
+	$ ./manage.py -s radpass --mysql_server 1.2.3.4 -u test -p test -n dbname create
 	```
 	b) authorized clients' been maintained in `nas` table
 
 	```bash
-	$ ./manage.py --readsqlclients --mysql_server 1.2.3.4 -u test -p test create
+	$ ./manage.py --readsqlclients --mysql_server 1.2.3.4 -u test -p test -n dbname create
 	```
 
 ## Note
