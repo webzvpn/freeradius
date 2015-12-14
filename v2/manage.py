@@ -27,11 +27,11 @@ args = parser.parse_args()
 cmd_dict = { \
 	"create": \
 		"docker run --net=host -e radpass={1} -e mysql_server={2} -e mysql_login={3} -e mysql_passwd={4} -e mysql_name={5} " \
-		"-e readsqlclients={6} -e time_zone=Asia/Shanghai --name {0} -d webz/{0}" \
+		"-e readsqlclients={6} -e time_zone=Europe/London --name {0} -d webz/{0}" \
 		.format(app_name, args.radius_secret, args.mysql_server, args.mysql_login, args.mysql_passwd, args.mysql_name, "yes" if args.readsqlclients else "no"), \
 	"debug": \
 		"docker run --net=host -e radpass={1} -e mysql_server={2} -e mysql_login={3} -e mysql_passwd={4} -e mysql_name={5} " \
-		"-e readsqlclients={5} -e time_zone=Asia/Shanghai --name {0} -it webz/{0} /bin/bash" \
+		"-e readsqlclients={5} -e time_zone=Europe/London --name {0} -it webz/{0} /bin/bash" \
 		.format(app_name, args.radius_secret, args.mysql_server, args.mysql_login, args.mysql_passwd, args.mysql_name, "yes" if args.readsqlclients else "no"), \
 	"start": "docker start %s" % app_name, \
 	"stop": "docker stop %s" % app_name, \
