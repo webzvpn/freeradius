@@ -6,6 +6,8 @@ if [[ "$(cat /etc/freeradius/dictionary | grep 'Max-Monthly-Traffic')" != "" ]];
 fi
 
 #freeradius
+
+
 #support ipv6
 cat >> /etc/freeradius/radiusd.conf <<EOF
 listen {
@@ -46,6 +48,7 @@ sed -i 's/^#[ \t]sql$/\tsql/' /etc/freeradius/sites-available/inner-tunnel
 sed -i '0,/md5/{s/md5/mschapv2/}' /etc/freeradius/eap.conf
 #Simultaneous-Use
 sed -i "/simul_count_query =/,+3 s/#//" /etc/freeradius/sql/mysql/dialup.conf
+sed -i "/simul_verify_query/,+5 s/^#*/#/" /etc/freeradius/sql/mysql/dialup.conf
 #Max-Monthly-Traffic
 sed -i '/counter.conf/ s/#//' /etc/freeradius/radiusd.conf
 cat >> /etc/freeradius/sql/mysql/counter.conf <<EOF
