@@ -69,7 +69,27 @@ ATTRIBUTE Monthly-Traffic-Limit 3004 integer
 EOF
 
 #sim-use new
-
+sed -i '/Session database, used for checking Simultaneous-Use. Either the radutmp/d' /etc/freeradius/sites-available/default
+sed -i '/\<radutmp\>/ s/^#//' /etc/freeradius/sites-available/default
+cat >> /etc/freeradius/radiusd.conf <<EOF
+session {
+    radutmp
+    sql
+}
+radutmp {
+        filename = ${logdir}/radutmp
+        username = %{User-Name}
+        case_sensitive = yes
+        check_with_nas = yes
+        perm = 0600
+        callerid = "yes"
+    }
+radutmp sradutmp {
+        filename = ${logdir}/sradutmp
+        perm = 0644
+        callerid = "no"
+    }
+EOF
 
 #timezone
 bash -c "echo $time_zone > /etc/timezone"
